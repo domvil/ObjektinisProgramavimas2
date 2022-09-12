@@ -39,6 +39,7 @@ void intIvedimas(int &priskirti, int lowerBound, int upperBound){
 }
 
 double median(vector<int> arr, int n){
+    if(n==0) return 0;
     std::sort(arr.begin(),arr.end());
     if(n%2!=0){
         return (double)arr[n/2];
@@ -48,7 +49,7 @@ double median(vector<int> arr, int n){
 }
 
 double avg(vector<int> arr, int n){
-    if(n!=0){
+    if(n>0){
         return std::accumulate(arr.begin(), arr.end(),0.0)/n;
     }
     return 0;
