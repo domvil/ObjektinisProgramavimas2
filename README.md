@@ -3,11 +3,11 @@
 **Programos pagrindinės operacijos**
 
 ```
-- Klaviatura ivedami studento vardas bei pavarde
-- Pasirenkama ar studento rezultatus (t.y namu darbu, egz balus) generuoti atsitiktinai ar ivesti  ranka
-- Ivedami arba sugeneruojami studento rezultatai
-- Pasirenkama ar galutinio balo skaiciavime naudoti namu darbu rezultatų vidurkį arba medianą.
-- Isvedami studento duomenys: pavarde, vardas, galutinis balas
+- Klaviatūra ivedami studento vardas bei pavarde
+- Pasirenkama ar studento rezultatus (t.y namų darbų, egz balus) generuoti atsitiktinai ar įvesti  ranka
+- Įvedami arba sugeneruojami studento rezultatai
+- Pasirenkama ar galutinio balo skaičiavime naudoti namų darbų rezultatų vidurkį ar medianą.
+- Išvedami studento duomenys: pavardė, vardas, galutinis balas
 ```
 
 **Apribojimai**
