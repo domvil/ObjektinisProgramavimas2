@@ -17,23 +17,29 @@ struct Studentas{
     vector<int> ndRezultatai;
     int egzRez;
     double galutinis;
+    int namuDarbuSk;
 };
 
-int random=0;
-string pasirinkimas;
+int random;
+int pasirinkimas;
 
-void intIvedimas(int &priskirti, int lowerBound, int upperBound){
+void intIvedimas(int &priskirti, int lowerBound, int upperBound, bool stoppage=false){
     if(random==0){
     cin >> priskirti;
-    while(cin.fail() || priskirti > upperBound || priskirti < lowerBound){
-        cout << "Bloga ivestis, ivesti sveika skaiciu is [" << lowerBound << " , " << upperBound << "]\n";
+    while((cin.fail() || (priskirti > upperBound && upperBound!=-1) || priskirti < lowerBound) && !stoppage || (stoppage && priskirti!=11)){
+        cout << "Bloga ivestis, ivesti sveika skaiciu is [" << lowerBound << " , ";
+        if(upperBound==-1){
+            cout << "int32lim]\n";
+        }
+        else{
+            cout << upperBound << "]\n";
+        }
         cin.clear();
         cin.ignore(80,'\n');
-        cin >> priskirti;
     }
     }
     else{
-        priskirti = rand()%upperBound;
+        priskirti = rand()%11;
         cout << "Atsitiktinai priskirta " << priskirti << "\n";
     }
 }
@@ -55,7 +61,8 @@ double avg(vector<int> arr, int n){
     return 0;
 }
 
-void read(Studentas &s){
+void read(Studentas &s,int nr){
+    cout << "Iveskite " << nr+1 << "-tojo studento duomenis:\n";
     cout << "Iveskite studento varda:\n";
     cin >> s.vardas;
     cin.ignore(80,'\n');
@@ -63,39 +70,34 @@ void read(Studentas &s){
     cin >> s.pavarde;
     cin.ignore(80,'\n');
     cout << "Ar studento namu darbus sugeneruoti atsitiktinai ar ivesite patys?\n1 - Atsitiktinai 0 - Pats\n";
+    random = 0;
     intIvedimas(random,0,1);
-    string ar;
     int index = 0;
-    while(true){
-        cout << "Ar norite ivesti " << index+1 << "-aji namu darbo rezultata?: (Taip/Ne)\n";
-        cin >> ar;
-        while(cin.fail() || (ar != "Taip" & ar != "Ne")){
-            cin.clear();
-            cin.ignore(80,'\n');
-            cout << "Bloga ivestis, ivesti Taip/Ne\n";
-            cin >> ar;
+    int tmp=0;
+    if(random==0){
+    while(tmp!=11){
+        cout << "Ivesti " << index+1 << "-ojo namu darbu rezultata (norint baigti ivesti 11)\n";
+        s.ndRezultatai.push_back(0);
+        intIvedimas(tmp,0,10,true);
+        if(tmp!=11){
+        s.ndRezultatai[index]=tmp;
         }
-        if(ar=="Taip"){
+        index++;
+    }
+    }
+    else{
+        cout << "Namu darbu skaicius:\n";
+        intIvedimas(s.namuDarbuSk,0,10);
+        for(int i = 0; i < s.namuDarbuSk; i++){
+            cout << i+1 << "-tojo namu darbu rezultatas:\n";
             s.ndRezultatai.push_back(0);
-            intIvedimas(s.ndRezultatai[index],0,10);
-            index++;
-        }
-        else{
-            break;
+            intIvedimas(s.ndRezultatai[i],0,10);
         }
     }
     cout << "Iveskite studento egzamino rezultata:\n";
     intIvedimas(s.egzRez,0,10);
-    cout << "Ar norite, jog galutiniam bale butu naudojamas namu darbu vidurkis ar mediana?\nIvesti Vidurkis arba Mediana\n";
-    cin >> pasirinkimas;
-    while(pasirinkimas != "Vidurkis" && pasirinkimas != "Mediana"){
-        cout << "Bloga ivestis, ivesti Vidurkis arba Mediana:\n";
-        cin.clear();
-        cin.ignore(80,'\n');
-        cin >> pasirinkimas;
-    }
     double temp;
-    if(pasirinkimas=="Vidurkis"){
+    if(pasirinkimas==1){
         temp = avg(s.ndRezultatai,s.ndRezultatai.size());
     }
     else temp = median(s.ndRezultatai,s.ndRezultatai.size());
@@ -103,19 +105,28 @@ void read(Studentas &s){
 }
 
 void print(Studentas s) {
-  printf("%-12s %-12s Galutinis (%s)\n", "Vardas", "Pavarde",pasirinkimas.c_str());
   printf("%-12s %-12s %-16.2lf \n", s.vardas.c_str(),s.pavarde.c_str(), s.galutinis);
 }
 
 int main()
 {
+    int studentu_skaicius;
+    cout << "Iveskite studentu skaiciu:\n";
+    intIvedimas(studentu_skaicius,1,-1);
+    cout << "Ar norite, jog galutiniam bale butu naudojamas namu darbu vidurkis ar mediana?\nIvesti 0 arba 1\n0 - Mediana, 1 - Vidurkis\n";
+    intIvedimas(pasirinkimas,0,-1);
+
+    vector<Studentas> sar;
+    for(int i = 0; i < studentu_skaicius; i++){
+        Studentas s;
+        read(s,i);
+        sar.push_back(s);
+    }
+    string var[3] = {"Med.", "Vid."};
     srand(time(NULL));
-    Studentas s;
-    read(s);
-    print(s);
+    printf("%-12s %-12s Galutinis (%s)\n", "Vardas", "Pavarde",var[pasirinkimas].c_str());
+    for(int i = 0; i < studentu_skaicius; i++){
+        print(sar[i]);
+    }
     return 0;
 }
-
-
-
-
