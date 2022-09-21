@@ -54,7 +54,7 @@ double median(int arr[], int n){
     if(n%2!=0){
         return (double)arr[n/2];
     }else{
-        return (double)(arr[(n-1)/2]+arr[n/2])/2;
+        return (double)(arr[(n-1)/2]+arr[n/2])/2.0;
     }
 }
 
