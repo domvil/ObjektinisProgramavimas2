@@ -17,16 +17,16 @@ struct Studentas{
     vector<int> ndRezultatai;
     int egzRez;
     double galutinis;
-    int namuDarbuSk;
+    int namuDarbuSk=0;
 };
 
 int random;
 int pasirinkimas;
 
-void intIvedimas(int &priskirti, int lowerBound, int upperBound, bool stoppage=false){
+void intIvedimas(int &priskirti, int lowerBound, int upperBound, int stoppage=-999){
     if(random==0){
     cin >> priskirti;
-    while((cin.fail() || (priskirti > upperBound && upperBound!=-1) || priskirti < lowerBound) && !stoppage || (stoppage && priskirti!=11)){
+    while((cin.fail() || (priskirti > upperBound && upperBound!=-1) || priskirti < lowerBound) && priskirti != stoppage){
         cout << "Bloga ivestis, ivesti sveika skaiciu is [" << lowerBound << " , ";
         if(upperBound==-1){
             cout << "int32lim]\n";
@@ -36,6 +36,7 @@ void intIvedimas(int &priskirti, int lowerBound, int upperBound, bool stoppage=f
         }
         cin.clear();
         cin.ignore(80,'\n');
+        cin >> priskirti;
     }
     }
     else{
@@ -56,7 +57,7 @@ double median(vector<int> arr, int n){
 
 double avg(vector<int> arr, int n){
     if(n>0){
-        return std::accumulate(arr.begin(), arr.end(),0.0)/n;
+        return std::accumulate(arr.begin(), arr.end(),0.0)/(double)n;
     }
     return 0;
 }
@@ -73,14 +74,15 @@ void read(Studentas &s,int nr){
     random = 0;
     intIvedimas(random,0,1);
     int index = 0;
-    int tmp=0;
+    int tmp=-1;
     if(random==0){
     while(tmp!=11){
         cout << "Ivesti " << index+1 << "-ojo namu darbu rezultata (norint baigti ivesti 11)\n";
+        intIvedimas(tmp,0,10,11);
+        if(tmp!=11 && tmp != -1){
         s.ndRezultatai.push_back(0);
-        intIvedimas(tmp,0,10,true);
-        if(tmp!=11){
         s.ndRezultatai[index]=tmp;
+        s.namuDarbuSk+=1;
         }
         index++;
     }
@@ -98,9 +100,9 @@ void read(Studentas &s,int nr){
     intIvedimas(s.egzRez,0,10);
     double temp;
     if(pasirinkimas==1){
-        temp = avg(s.ndRezultatai,s.ndRezultatai.size());
+        temp = avg(s.ndRezultatai,s.namuDarbuSk);
     }
-    else temp = median(s.ndRezultatai,s.ndRezultatai.size());
+    else temp = median(s.ndRezultatai,s.namuDarbuSk);
     s.galutinis = 0.4*temp+0.6*(double)s.egzRez;
 }
 
