@@ -16,7 +16,7 @@ struct Studentas{
     string pavarde="";
     string vardas="";
     int ndSkaicius=0;
-    int *ndRezultatai;
+    int ndRezultatai[5];
     int egzRez=0;
     double galutinis=0;
 };
@@ -77,7 +77,6 @@ Studentas read(int nr){
     cout << "Ar studento namu darbus sugeneruoti atsitiktinai ar ivesite patys?\n1 - Atsitiktinai 0 - Pats\n";
     random = 0;
     intIvedimas(random,0,1);
-    s.ndRezultatai = new (std::nothrow) int[5];
     for(int i = 0; i < 5; i++){
         cout << "Iveskite " << i+1 << "-aji namu darbo rezultata: \n";
         intIvedimas(s.ndRezultatai[i],0,10);
@@ -86,9 +85,9 @@ Studentas read(int nr){
     intIvedimas(s.egzRez,0,10);
     double z;
     if(pasirinkimas==1){
-        z = avg(s.ndRezultatai,s.ndSkaicius);
+        z = avg(s.ndRezultatai,5);
     }
-    else z = median(s.ndRezultatai,s.ndSkaicius);
+    else z = median(s.ndRezultatai,5);
     s.galutinis = 0.4*z+0.6*(double)s.egzRez;
     return s;
 }
