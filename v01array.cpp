@@ -77,10 +77,8 @@ Studentas read(int nr){
     cout << "Ar studento namu darbus sugeneruoti atsitiktinai ar ivesite patys?\n1 - Atsitiktinai 0 - Pats\n";
     random = 0;
     intIvedimas(random,0,1);
-    cout << "Kiek studentas turejo namu darbu?\n";
-    intIvedimas(s.ndSkaicius,0,-1);
-    s.ndRezultatai = new (std::nothrow) int[s.ndSkaicius];
-    for(int i = 0; i < s.ndSkaicius; i++){
+    s.ndRezultatai = new (std::nothrow) int[5];
+    for(int i = 0; i < 5; i++){
         cout << "Iveskite " << i+1 << "-aji namu darbo rezultata: \n";
         intIvedimas(s.ndRezultatai[i],0,10);
     }
