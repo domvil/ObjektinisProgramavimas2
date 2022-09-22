@@ -104,7 +104,7 @@ int main()
     Studentas *sar,*temp;
     sar = new Studentas[studentu_skaicius];
     cout << "Ar norite, jog galutiniam bale butu naudojamas namu darbu vidurkis ar mediana?\nIvesti 0 arba 1\n0 - Mediana, 1 - Vidurkis\n";
-    intIvedimas(pasirinkimas,0,-1);
+    intIvedimas(pasirinkimas,0,1);
     cout << "Iveskite studentu duomenis:\n";
     while(ivedimas!='N' && ivedimas !='n'){
     sar[index]=read(index);
