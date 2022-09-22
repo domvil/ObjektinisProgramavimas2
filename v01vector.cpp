@@ -17,23 +17,30 @@ struct Studentas{
     vector<int> ndRezultatai;
     int egzRez;
     double galutinis;
+    int namuDarbuSk=0;
 };
 
-int random=0;
-string pasirinkimas;
+int random;
+int pasirinkimas;
 
-void intIvedimas(int &priskirti, int lowerBound, int upperBound){
+void intIvedimas(int &priskirti, int lowerBound, int upperBound, int stoppage=-999){
     if(random==0){
     cin >> priskirti;
-    while(cin.fail() || priskirti > upperBound || priskirti < lowerBound){
-        cout << "Bloga ivestis, ivesti sveika skaiciu is [" << lowerBound << " , " << upperBound << "]\n";
+    while((cin.fail() || (priskirti > upperBound && upperBound!=-1) || priskirti < lowerBound) && priskirti != stoppage){
+        cout << "Bloga ivestis, ivesti sveika skaiciu is [" << lowerBound << " , ";
+        if(upperBound==-1){
+            cout << "int32lim]\n";
+        }
+        else{
+            cout << upperBound << "]\n";
+        }
         cin.clear();
         cin.ignore(80,'\n');
         cin >> priskirti;
     }
     }
     else{
-        priskirti = rand()%upperBound;
+        priskirti = rand()%11;
         cout << "Atsitiktinai priskirta " << priskirti << "\n";
     }
 }
@@ -44,18 +51,19 @@ double median(vector<int> arr, int n){
     if(n%2!=0){
         return (double)arr[n/2];
     }else{
-        return (double)(arr[(n-1)/2]+arr[n/2])/2;
+        return (double)(arr[(n-1)/2]+arr[n/2])/2.0;
     }
 }
 
 double avg(vector<int> arr, int n){
     if(n>0){
-        return std::accumulate(arr.begin(), arr.end(),0.0)/n;
+        return std::accumulate(arr.begin(), arr.end(),0.0)/(double)n;
     }
     return 0;
 }
 
-void read(Studentas &s){
+void read(Studentas &s,int nr){
+    cout << "Iveskite " << nr+1 << "-tojo studento duomenis:\n";
     cout << "Iveskite studento varda:\n";
     cin >> s.vardas;
     cin.ignore(80,'\n');
@@ -63,59 +71,64 @@ void read(Studentas &s){
     cin >> s.pavarde;
     cin.ignore(80,'\n');
     cout << "Ar studento namu darbus sugeneruoti atsitiktinai ar ivesite patys?\n1 - Atsitiktinai 0 - Pats\n";
+    random = 0;
     intIvedimas(random,0,1);
-    string ar;
     int index = 0;
-    while(true){
-        cout << "Ar norite ivesti " << index+1 << "-aji namu darbo rezultata?: (Taip/Ne)\n";
-        cin >> ar;
-        while(cin.fail() || (ar != "Taip" & ar != "Ne")){
-            cin.clear();
-            cin.ignore(80,'\n');
-            cout << "Bloga ivestis, ivesti Taip/Ne\n";
-            cin >> ar;
+    int tmp=-1;
+    if(random==0){
+    while(tmp!=11){
+        cout << "Ivesti " << index+1 << "-ojo namu darbu rezultata (norint baigti ivesti 11)\n";
+        intIvedimas(tmp,0,10,11);
+        if(tmp!=11 && tmp != -1){
+        s.ndRezultatai.push_back(0);
+        s.ndRezultatai[index]=tmp;
+        s.namuDarbuSk+=1;
         }
-        if(ar=="Taip"){
+        index++;
+    }
+    }
+    else{
+        cout << "Namu darbu skaicius:\n";
+        intIvedimas(s.namuDarbuSk,0,10);
+        for(int i = 0; i < s.namuDarbuSk; i++){
+            cout << i+1 << "-tojo namu darbu rezultatas:\n";
             s.ndRezultatai.push_back(0);
-            intIvedimas(s.ndRezultatai[index],0,10);
-            index++;
-        }
-        else{
-            break;
+            intIvedimas(s.ndRezultatai[i],0,10);
         }
     }
     cout << "Iveskite studento egzamino rezultata:\n";
     intIvedimas(s.egzRez,0,10);
-    cout << "Ar norite, jog galutiniam bale butu naudojamas namu darbu vidurkis ar mediana?\nIvesti Vidurkis arba Mediana\n";
-    cin >> pasirinkimas;
-    while(pasirinkimas != "Vidurkis" && pasirinkimas != "Mediana"){
-        cout << "Bloga ivestis, ivesti Vidurkis arba Mediana:\n";
-        cin.clear();
-        cin.ignore(80,'\n');
-        cin >> pasirinkimas;
-    }
     double temp;
-    if(pasirinkimas=="Vidurkis"){
-        temp = avg(s.ndRezultatai,s.ndRezultatai.size());
+    if(pasirinkimas==1){
+        temp = avg(s.ndRezultatai,s.namuDarbuSk);
     }
-    else temp = median(s.ndRezultatai,s.ndRezultatai.size());
+    else temp = median(s.ndRezultatai,s.namuDarbuSk);
     s.galutinis = 0.4*temp+0.6*(double)s.egzRez;
 }
 
 void print(Studentas s) {
-  printf("%-12s %-12s Galutinis (%s)\n", "Vardas", "Pavarde",pasirinkimas.c_str());
   printf("%-12s %-12s %-16.2lf \n", s.vardas.c_str(),s.pavarde.c_str(), s.galutinis);
 }
 
 int main()
 {
+    int studentu_skaicius;
+    cout << "Iveskite studentu skaiciu:\n";
+    intIvedimas(studentu_skaicius,1,-1);
+    cout << "Ar norite, jog galutiniam bale butu naudojamas namu darbu vidurkis ar mediana?\nIvesti 0 arba 1\n0 - Mediana, 1 - Vidurkis\n";
+    intIvedimas(pasirinkimas,0,-1);
+
+    vector<Studentas> sar;
+    for(int i = 0; i < studentu_skaicius; i++){
+        Studentas s;
+        read(s,i);
+        sar.push_back(s);
+    }
+    string var[3] = {"Med.", "Vid."};
     srand(time(NULL));
-    Studentas s;
-    read(s);
-    print(s);
+    printf("%-12s %-12s Galutinis (%s)\n", "Vardas", "Pavarde",var[pasirinkimas].c_str());
+    for(int i = 0; i < studentu_skaicius; i++){
+        print(sar[i]);
+    }
     return 0;
 }
-
-
-
-
