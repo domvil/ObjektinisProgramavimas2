@@ -101,6 +101,7 @@ void print(Studentas s) {
 
 int main()
 {
+    srand(time(NULL));
     int studentu_skaicius;
     cout << "Iveskite studentu skaiciu:\n";
     intIvedimas(studentu_skaicius,1,-1);
@@ -111,7 +112,6 @@ int main()
         read(sar[i],i);
     }
     string var[3] = {"Med.", "Vid."};
-    srand(time(NULL));
     printf("%-12s %-12s Galutinis (%s)\n", "Vardas", "Pavarde",var[pasirinkimas].c_str());
     for(int i = 0; i < studentu_skaicius; i++){
         print(sar[i]);
