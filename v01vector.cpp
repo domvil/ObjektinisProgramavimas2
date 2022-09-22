@@ -62,7 +62,8 @@ double avg(vector<int> arr, int n){
     return 0;
 }
 
-void read(Studentas &s,int nr){
+Studentas read(int nr){
+    Studentas s;
     cout << "Iveskite " << nr+1 << "-tojo studento duomenis:\n";
     cout << "Iveskite studento varda:\n";
     cin >> s.vardas;
@@ -104,6 +105,7 @@ void read(Studentas &s,int nr){
     }
     else temp = median(s.ndRezultatai,s.namuDarbuSk);
     s.galutinis = 0.4*temp+0.6*(double)s.egzRez;
+    return s;
 }
 
 void print(Studentas s) {
@@ -113,19 +115,25 @@ void print(Studentas s) {
 int main()
 {
     srand(time(NULL));
-    int studentu_skaicius;
-    cout << "Iveskite studentu skaiciu:\n";
-    intIvedimas(studentu_skaicius,1,-1);
-    cout << "Ar norite, jog galutiniam bale butu naudojamas namu darbu vidurkis ar mediana?\nIvesti 0 arba 1\n0 - Mediana, 1 - Vidurkis\n";
-    intIvedimas(pasirinkimas,0,-1);
-
+    int studentu_skaicius=1;
+    char ivedimas='X';
     vector<Studentas> sar;
-    for(int i = 0; i < studentu_skaicius; i++){
-        Studentas s;
-        read(s,i);
-        sar.push_back(s);
+    cout << "Ar norite, jog galutiniam bale butu naudojamas namu darbu vidurkis ar mediana?\nIvesti 0 arba 1\n0 - Mediana, 1 - Vidurkis\n";
+    intIvedimas(pasirinkimas,0,1);
+    cout << "Iveskite studentu duomenis:\n";
+    while(ivedimas!='N' && ivedimas !='n'){
+        sar.push_back(read(studentu_skaicius-1));
+        cout << "Testi/Baigti ivedima? Ivesti T/N\n";
+        cin >> ivedimas;
+        cin.ignore(80,'\n');
+        while(ivedimas!='T' && ivedimas !='t' && ivedimas !='N' && ivedimas!='n'){
+        cout << "Bloga ivestis, bandykite dar karta!\n";
+        cin >> ivedimas;
+    }
+    studentu_skaicius++;
     }
     string var[3] = {"Med.", "Vid."};
+    studentu_skaicius--;
     printf("%-12s %-12s Galutinis (%s)\n", "Vardas", "Pavarde",var[pasirinkimas].c_str());
     for(int i = 0; i < studentu_skaicius; i++){
         print(sar[i]);
