@@ -131,7 +131,6 @@ void readfromFile(vector<Studentas> &sar){
         }
         else{
             throw std::runtime_error(filename);
-            std::terminate();
         }
 
     }
