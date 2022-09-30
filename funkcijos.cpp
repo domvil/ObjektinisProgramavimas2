@@ -136,6 +136,7 @@ void readfromFile(vector<Studentas> &sar){
     }
     catch(std::exception &e){
      cout << "Ivyko problema nuskaitant faila: " << e.what() << "\n";
+     return;
   }
 }
 
