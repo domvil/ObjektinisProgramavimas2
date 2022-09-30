@@ -10,7 +10,6 @@ int random;
 int main()
 {
     int studentu_skaicius = 0;
-    std::ios_base::sync_with_stdio(false);
     srand(time(NULL));
     cout << "Ar norite, jog galutiniam bale butu naudojamas namu darbu vidurkis ar mediana?\nIvesti 0 arba 1\n0 - Mediana, 1 - Vidurkis\n";
     intIvedimas(pasirinkimas,0,1);
