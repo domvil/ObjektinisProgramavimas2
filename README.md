@@ -1,11 +1,11 @@
 
-#V0.2
+**#V0.2**
 
 **Failų skaitymas**
 
 Pridėta galimybė duomenis įvesti nuskaitant failą. 
 
-#V0.1
+**#V0.1**
 
 **Programos pagrindinės operacijos**
 
