@@ -23,24 +23,13 @@ void intIvedimas(int &priskirti, int lowerBound, int upperBound, int stoppage){
     }
 }
 
-double median(vector<int> a, int n){
-    if (n % 2 == 0) {
-        nth_element(a.begin(),
-                    a.begin() + n / 2,
-                    a.end());
-        nth_element(a.begin(),
-                    a.begin() + (n - 1) / 2,
-                    a.end());
-        return (double)(a[(n - 1) / 2]
-                        + a[n / 2])
-               / 2.0;
-    }
-
-    else {
-        nth_element(a.begin(),
-                    a.begin() + n / 2,
-                    a.end());
-        return (double)a[n / 2];
+double median(vector<int> arr, int n){
+    if(n==0) return 0;
+    std::sort(arr.begin(),arr.end());
+    if(n%2!=0){
+        return (double)arr[n/2];
+    }else{
+        return (double)(arr[(n-1)/2]+arr[n/2])/2.0;
     }
 }
 
@@ -135,7 +124,7 @@ void readfromFile(vector<Studentas> &sar){
             if(pasirinkimas==1){
                 temp2 = avg(s.ndRezultatai,kiekNd);
             }
-            else temp2 = median(s.ndRezultatai,s.namuDarbuSk);
+            else temp2 = median(s.ndRezultatai,kiekNd);
             s.galutinis = skaiciuotiGalutini(temp2,s.egzRez);
             sar.push_back(s);
         }
