@@ -95,9 +95,9 @@ void print(Studentas s) {
 }
 
 void readfromFile(vector<Studentas> &sar){
-
+    string filename="studentai10000.txt";
     try{
-        std::ifstream fileRead("studentai10000.txt");
+        std::ifstream fileRead(filename);
         if(!fileRead.fail()){
         int sk;
         double temp2;
@@ -130,12 +130,12 @@ void readfromFile(vector<Studentas> &sar){
         }
         }
         else{
-            cout << "Nepavyko rasti failo!\n";
+            throw std::runtime_error(filename);
         }
 
     }
     catch(std::exception &e){
-     cout << "Ivyko problema nuskaitant faila\n";
+     cout << "Ivyko problema nuskaitant faila: " << e.what() << "\n";
   }
 }
 
