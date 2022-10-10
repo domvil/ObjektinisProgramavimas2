@@ -1,4 +1,7 @@
 #V0.3
+**Studentų skirstymas į kategorijas**
+
+Studentai dabar skirstomi į dvi atskiras kategorijas, priklausomai nuo jų galutinio balo.
 
 **Failų generavimas**
 
