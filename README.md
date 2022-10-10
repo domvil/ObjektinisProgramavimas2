@@ -8,8 +8,8 @@ Pridėta galimybė sugeneruoti studentų duomenis pačiam, įvedus studentų ir 
 
 Pridėtas programos veiksmų atlikimo laikmatis, kuris padeda įvertinti jos spartą. 
 
-![1000](https://user-images.githubusercontent.com/113367128/194945798-798de607-aa3d-4aad-9e29-7bbb5bc074e5.png)
-![10000](https://user-images.githubusercontent.com/113367128/194945801-8bd49ad4-79d1-47c2-9591-d2792ad8fb9a.png)
-![100000](https://user-images.githubusercontent.com/113367128/194945802-814bd71d-e718-4a83-8c8c-871a320c4df7.png)
-![1000000](https://user-images.githubusercontent.com/113367128/194945803-a2dad7f0-505c-4aa8-a9be-5c094ad8d144.png)
-![10000000](https://user-images.githubusercontent.com/113367128/194945795-6ec56f40-cd45-41b4-9d16-1a6c67f24e0f.png)
+![1000](https://user-images.githubusercontent.com/113367128/194946146-0b5d04b7-e0c3-4ea8-ba0f-aa8d2f5dbe1b.png)
+![10000](https://user-images.githubusercontent.com/113367128/194946147-aa35c9d9-7696-426b-9569-8227e7892637.png)
+![100000](https://user-images.githubusercontent.com/113367128/194946150-e8bf66b2-727e-4396-a692-2bfd93dccbae.png)
+![1000000](https://user-images.githubusercontent.com/113367128/194946152-7da4fb54-1b18-48c7-830f-11c434125c74.png)
+![10000000](https://user-images.githubusercontent.com/113367128/194946144-11797f35-80cf-48cf-981a-308c3d0b925b.png)
