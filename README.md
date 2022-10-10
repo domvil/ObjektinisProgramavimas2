@@ -4,6 +4,10 @@
 
 Studentai dabar skirstomi į dvi atskiras kategorijas, priklausomai nuo jų galutinio balo.
 
+**Rezultatų išvedimas į failą**
+
+Rezultatai dabar išvedami į txt failus.
+
 **Failų generavimas**
 
 Pridėta galimybė sugeneruoti studentų duomenis pačiam, įvedus studentų ir namų darbų skaičius.
