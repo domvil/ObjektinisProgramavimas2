@@ -14,12 +14,16 @@ struct Studentas{
 };
 
 void intIvedimas(int &priskirti, int lowerBound, int upperBound, int stoppage=-999);
-double median(vector<int> a, int n);
-double avg(vector<int> arr, int n);
+double median(vector<int> &a, int n);
+double avg(vector<int> &arr, int n);
 double skaiciuotiGalutini(double temp, double egz);
 Studentas read(int nr);
 void print(Studentas s);
-void readfromFile(vector<Studentas> &sar);
+void readfromFile(string filename,vector<Studentas> &sar,int &studentu_skaicius);
 bool compare(Studentas a, Studentas b);
+void generuotiFailus(int &studentu_skaicius,int ndSk);
+int pasirinktiMedArVid(int &pasirinkimas);
+void dalintiSarasa(vector<Studentas>&sar, vector<Studentas> &vargsiukai, vector<Studentas> &moksliukai);
+void printToFile(string filename, vector<Studentas> &sar, int ndSkaicius);
 
 #endif

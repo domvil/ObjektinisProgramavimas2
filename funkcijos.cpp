@@ -1,6 +1,13 @@
 #include "funkcijos.h"
 #include "mylib.h"
 
+std::mt19937 mt(static_cast<long unsigned int>(hrClock::now().time_since_epoch().count()));
+std::uniform_int_distribution<int> dist(0, 10);
+
+int generuotiSkaiciu(){
+    return dist(mt);
+}
+
 void intIvedimas(int &priskirti, int lowerBound, int upperBound, int stoppage){
     if(random==0){
     cin >> priskirti;
@@ -18,12 +25,12 @@ void intIvedimas(int &priskirti, int lowerBound, int upperBound, int stoppage){
     }
     }
     else{
-        priskirti = rand()%11;
+        priskirti = generuotiSkaiciu();
         cout << "Atsitiktinai priskirta " << priskirti << "\n";
     }
 }
 
-double median(vector<int> arr, int n){
+double median(vector<int> &arr, int n){
     if(n==0) return 0;
     std::sort(arr.begin(),arr.end());
     if(n%2!=0){
@@ -33,7 +40,7 @@ double median(vector<int> arr, int n){
     }
 }
 
-double avg(vector<int> arr, int n){
+double avg(vector<int> &arr, int n){
     if(n>0){
         return std::accumulate(arr.begin(), arr.end(),0.0)/(double)n;
     }
@@ -94,8 +101,12 @@ void print(Studentas s) {
   printf("%-12s %-12s %-16.2lf \n", s.vardas.c_str(),s.pavarde.c_str(), s.galutinis);
 }
 
-void readfromFile(vector<Studentas> &sar){
-    string filename="Studentai10000.txt";
+int pasirinktiMedArVid(int &pasirinkimas){
+    cout << "Ar norite, jog galutiniam bale butu naudojamas namu darbu vidurkis ar mediana?\nIvesti 0 arba 1\n0 - Mediana, 1 - Vidurkis\n";
+    intIvedimas(pasirinkimas,0,1);
+}
+
+void readfromFile(string filename, vector<Studentas> &sar, int &studentu_skaicius){
     try{
         std::ifstream fr(filename);
         if(!fr.fail()){
@@ -105,14 +116,14 @@ void readfromFile(vector<Studentas> &sar){
         string temp,pirmaEil;
         int kiekNd = -3;
         std::getline(fr >> std::ws,pirmaEil);
-        std::stringstream iss(pirmaEil);
+       stringstream iss(pirmaEil);
         while(iss >> temp)
         {
             kiekNd++;
         }
         while(std::getline(fr >> std::ws,line)){
             Studentas s;
-            std::stringstream iss(line);
+            stringstream iss(line);
             iss>> s.vardas;
             iss >> s.pavarde;
             for(int i = 0; i < kiekNd; i++){
@@ -132,7 +143,7 @@ void readfromFile(vector<Studentas> &sar){
         else{
             throw std::runtime_error(filename);
         }
-
+        studentu_skaicius=sar.size();
     }
     catch(std::exception &e){
      cout << "Ivyko problema nuskaitant faila: " << e.what() << "\n";
@@ -140,13 +151,53 @@ void readfromFile(vector<Studentas> &sar){
   }
 }
 
+void dalintiSarasa(vector<Studentas>&sar, vector<Studentas> &vargsiukai, vector<Studentas> &moksliukai){
+    for(auto &s: sar){
+        if(s.galutinis<5.00) vargsiukai.push_back(s);
+        else moksliukai.push_back(s);
+    }
+    sar.clear();
+    sar.shrink_to_fit();
+}
+
+void printToFile(string filename, vector<Studentas> &sar, int ndSkaicius){
+    string var[3] = {"Med.", "Vid."};
+    stringstream buffer;
+    std::ofstream out(filename);
+    buffer << std::left << setw(15) << "Vardas" << setw(15) << "Pavarde" << "Galutinis("<< var[pasirinkimas] << ")" << "\n";
+    for(int i = 0; i < sar.size(); i++){
+        buffer << std::left << setw(15) << sar[i].vardas << setw(15) << sar[i].pavarde << std::fixed
+        << std::setprecision(2) << sar[i].galutinis << "\n";
+    }
+    out << buffer.str();
+    buffer.clear();
+    out.close();
+}
+
+void generuotiFailus(int &studentu_skaicius,int ndSk){
+    string filename = "studentai"+std::to_string(studentu_skaicius)+".txt";
+    stringstream buffer;
+    std::ofstream out(filename);
+    buffer << "Vardas" << setw(15) << "Pavarde";
+    for(int i = 0; i < ndSk; i++){
+        buffer << setw(15) << "ND" << i+1;
+    }
+    buffer << setw(15) << "Egz.\n";
+    for(int i = 0; i < studentu_skaicius; i++){
+        buffer << "Vardas" << i+1 << setw(15) << "Pavarde" << i+1;
+        for(int j = 0; j < ndSk; j++){
+            buffer << setw(15) << generuotiSkaiciu();
+        }
+        buffer << setw(15) << generuotiSkaiciu() << "\n";
+    }
+    out << buffer.str();
+    buffer.clear();
+    out.close();
+    cout << "Sugeneruotas " << filename << " failas\n";
+}
+
 bool compare(Studentas a, Studentas b){
-    if(raktas=='V'){
-        return a.vardas<b.vardas;
-    }
-    else{
-        return a.pavarde<b.pavarde;
-    }
+    return a.vardas<b.vardas;
 }
 
 
