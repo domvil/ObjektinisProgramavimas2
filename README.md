@@ -12,8 +12,11 @@ Pridėta nauja programos funkcija: konteinerių testavimas. Ji atlieka Vector ir
 **Kompiutero parametrai**
 
 Ryzen 5 5600X
+
 GTX 970
+
 16GB 3600MHz
+
 SSD 
 
 
