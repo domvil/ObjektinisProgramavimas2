@@ -13,7 +13,7 @@ jis įkeliamas į vargsiukų konteinerį ir ištrinamas iš pradinio studentų k
 
 **3 Strategija**
 
-Strategija pritaikoma vector konteineriui pasinaudojant **std::partition**, **std::find_if** ir **std::copy** algoritmais. **std::partition** naudojamas vietoje **std::sort**, padedant pergrupuoti pradinį konteinerį pagal tinkamus ir netinkamus elementus. **std::find_if** naudojamas surasti poziciją studentų vektoriuje iki kur tiksliai yra tinkami elementai. Tada su **std::copy** nukopijuojame dalį studentų konteinerio į vargšiukų konteinerį ir ištriname šiuos elementus iš studentų vektoriaus. 
+Strategija pritaikoma vector konteineriui pasinaudojant **std::partition**, **std::find_if** ir **std::copy** algoritmais. **std::partition** naudojamas vietoje **std::sort**, padedant pergrupuoti pradinį konteinerį pagal tinkamus ir netinkamus elementus. **std::find_if** naudojamas surasti poziciją studentų vektoriuje iki kur tiksliai yra tinkami elementai. Tada su **std::copy** nukopijuojame surastą dalį studentų konteinerio į vargšiukų konteinerį ir ištriname šiuos elementus iš studentų vektoriaus. 
 
 **Rezultatai**
 
