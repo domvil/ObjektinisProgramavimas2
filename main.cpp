@@ -136,7 +136,7 @@ int main()
 
     prad = hrClock::now();
     sort(sar_copy.begin(),sar_copy.end(),compare);
-    antraStrategija(sar,vargsiukai);
+    antraStrategija(sar_copy,vargsiukai);
     pab = hrClock::now();
     diff = pab-prad;
     pirmas = diff.count();
@@ -149,6 +149,7 @@ int main()
     pab = hrClock::now();
     diff = pab-prad;
     antras = diff.count();
+
 
     printf("%-52s %-20.10lf %-20.10lf\n", (s+" irasu failo dalijimas i grupes (2 strategija)").c_str(), pirmas,antras);
 
