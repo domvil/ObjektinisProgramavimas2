@@ -211,23 +211,27 @@ void pirmaStrategija(list<Studentas>&sar, list<Studentas> &vargsiukai, list<Stud
 }
 void antraStrategija(vector<Studentas>&sar, vector<Studentas> &vargsiukai){
     auto it = sar.begin();
+    auto it2 = it;
     while(it!=sar.end()){
         if( (*it).galutinis < 5.00){
                 vargsiukai.push_back(*it);
+                it2++;
             }
         it++;
     }
-    sar.erase(it,sar.end());
+    sar.erase(sar.begin(),it2);
 }
 void antraStrategija(list<Studentas>&sar, list<Studentas> &vargsiukai){
     auto it = sar.begin();
+    auto it2 = it;
     while(it!=sar.end()){
         if( (*it).galutinis < 5.00){
                 vargsiukai.push_back(*it);
+                it2++;
             }
         it++;
     }
-    sar.erase(it,sar.end());
+    sar.erase(sar.begin(),it2);
 }
 
 void vectorOptimizacija(vector<Studentas> &sar, vector <Studentas> &vargsiukai){
