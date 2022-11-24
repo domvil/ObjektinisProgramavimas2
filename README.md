@@ -1,4 +1,4 @@
-**#V1.1**
+**#V1.2**
 
 **Naudojimosi instrukcija**
 
@@ -14,7 +14,7 @@
 **Pakeitimai**
 
 ```
-Vietoje struktūrų dabar naudojamos klasės, palikti metodai tik su vector konteineriu, t.y išimti visi List panaudojimai.
+Vietoje struktūrų dabar naudojamos klasės, palikti metodai tik su vector konteineriu, t.y išimti visi List panaudojimai, realizuota "Rule of three" taisyklė.
 ```
 
 **Spartos palyginimas su V1.0 versija**
