@@ -22,7 +22,7 @@ public:
         vardas_ = s.vardas_;
         pavarde_ = s.pavarde_;
         egz_ = s.egz_;
-        copy(s.nd_.begin(), s.nd_.end(), nd_.begin());
+        copy(s.nd_.begin(), s.nd_.end(), back_inserter(nd_));
         rez_=s.rez_;
         medvid_=s.medvid_;
     }
@@ -34,7 +34,7 @@ public:
         }
         vardas_ = s.vardas_;
         pavarde_ = s.pavarde_;
-        std::copy(s.nd_.begin(), s.nd_.end(), nd_.begin());
+        std::copy(s.nd_.begin(), s.nd_.end(), back_inserter(nd_));
         egz_ = s.egz_;
         rez_ = s.rez_;
         medvid_ = s.medvid_;
