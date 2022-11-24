@@ -29,7 +29,7 @@ Vietoje struktūrų dabar naudojamos klasės, palikti metodai tik su vector kont
 
 **Spartos palyginimas pagal skirtingus kompiliatoriaus optimizavimo flagus**
 
-![image](https://user-images.githubusercontent.com/113367128/203868716-77019f6a-5923-410b-b110-308839f70a90.png)
+![image](https://user-images.githubusercontent.com/113367128/203868740-7a00ce1d-f5f6-49de-b53c-a6128dc91878.png)
 
 
 **#V1.0**
