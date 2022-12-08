@@ -14,6 +14,18 @@ Sukurta Doxygen dokumentacija.
 - Pasirinkus studentų grupavimo testavimą, vartotojas yra prašomas įvesti norimą testuoti studentų skaičių, tada ieškomas failas pagal pasirinktą skaičių, pvz.: studentai1000.txt, jeigu jis nėra surastas, programa baigia darbą.
 ```
 
+**Įdiegimo instrukcija**
+
+```
+1) Atsisiųsti visus failus iš repozitorijos. 
+2) Įsirašyti cmake.
+3) Įkėlus visus failus į vieną direktoriją, juos pasiekti per komandinę eilutę (su cd komanda galima) ir naudojant cmake parašyti šias komandas:
+
+cmake CmakeLists.txt
+cmake --install .
+cmake --build .
+Debug\v10.exe
+
 **#V1.5**
 
 Sukurta nauja abstrakčioji klasė zmogus.
