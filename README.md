@@ -1,3 +1,8 @@
+**#V1.5**
+
+Sukurta nauja abstrakčioji klasė zmogus.
+Klase studentas dabar yra zmogus klasės išvestinė klasė.
+
 **#V1.2**
 
 **Naudojimosi instrukcija**
