@@ -25,7 +25,7 @@ cmake CmakeLists.txt
 cmake --install .
 cmake --build .
 Debug\v10.exe
-
+```
 **#V1.5**
 
 Sukurta nauja abstrakčioji klasė zmogus.
