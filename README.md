@@ -28,6 +28,11 @@ cmake --install .
 cmake --build .
 Debug\v10.exe
 ```
+**#V1.5**
+
+Sukurta nauja abstrakčioji klasė zmogus.
+Klasė studentas dabar yra zmogus klasės išvestinė klasė.
+
 **#V1.2**
 
 Realizuota "Rule of three" taisyklė.
