@@ -5,17 +5,14 @@ class Zmogus
         string vardas_;
         string pavarde_;
     public:
+        Zmogus() {}
         virtual void setVardas(string vardas) = 0;
         virtual void setPavarde(string pavarde) = 0;
         inline string getVardas() const { return vardas_; }
         inline string getPavarde() const { return pavarde_; }
 
-        Zmogus()
-        {
-            vardas_ = "";
-            pavarde_ = "";
-        }
 };
+
 class Studentas : public Zmogus
 {
 private:
